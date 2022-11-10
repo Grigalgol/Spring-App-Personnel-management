@@ -5,6 +5,7 @@ import com.example.personnelmanagement.model.Role;
 import com.example.personnelmanagement.model.User;
 import com.example.personnelmanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -13,10 +14,12 @@ import java.util.Arrays;
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -27,7 +30,7 @@ public class UserServiceImpl implements UserService{
                 registrationDto.getEmail(),
                 registrationDto.getPhone(),
                 registrationDto.getSalary(),
-                registrationDto.getPassword(),
+                passwordEncoder.encode(registrationDto.getPassword()),
                 registrationDto.getPost(),
                 Arrays.asList(new Role("ROLE_USER"))
         );

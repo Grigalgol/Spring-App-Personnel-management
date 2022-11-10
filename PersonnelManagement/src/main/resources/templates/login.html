@@ -17,13 +17,18 @@
             <div class="col-12 col-sm-7 col-md-6 m-auto">
                 <div class="card border-0 shadow">
                     <div class="card-body">
-
+                        <div th:if="${param.error}">
+                            <div class="alert alert-danger">Неверный логин или пароль.</div>
+                        </div>
+                        <div th:if="${param.logout}">
+                            <div class="alert alert-info">Вы вышли из аккаунта.</div>
+                        </div>
                         <div class="text-center mt-3">
                             <h3 class="mb-5">Вход</h3>
                         </div>
-                        <form action="">
-                            <input type="text" name="" id="" class="form-control my-4 py-2" placeholder="Email" />
-                            <input type="password" name="" id="" class="form-control my-4 py-2" placeholder="Пароль" />
+                        <form th:action="@{/login}" method="post">
+                            <input type="text" id ="username" name = "username" class="form-control my-4 py-2" placeholder="Email" />
+                            <input type="password" id="password" name = "password" class="form-control my-4 py-2" placeholder="Пароль" />
                             <div class="text-center mt-3">
                                 <button class="btn btn-primary">Войти</button>
                             </div>
