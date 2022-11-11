@@ -4,20 +4,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "role")
+@Table(name = "departament")
 @Data
 @NoArgsConstructor
-public class Role {
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
 
-    public Role(String name) {
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "department",fetch=FetchType.LAZY)
+    private List<User> users;
+
+    public Department(String name) {
         this.name = name;
     }
-
-
 }
