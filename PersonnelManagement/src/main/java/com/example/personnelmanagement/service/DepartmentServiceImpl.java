@@ -1,6 +1,5 @@
 package com.example.personnelmanagement.service;
 
-import com.example.personnelmanagement.dto.DepartmentDTO;
 import com.example.personnelmanagement.model.Department;
 import com.example.personnelmanagement.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,21 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public void saveDepartment(DepartmentDTO departmentDTO) {
-        departmentRepository.save(new Department(departmentDTO.getName()));
+    public void saveDepartment(Department department) {
+        departmentRepository.save(department);
+    }
+
+    @Override
+    public void deleteDepartmentById(long id) {
+        departmentRepository.deleteById(id);
+    }
+
+    @Override
+    public Department getDepartmentById(long id) {
+        var optional = departmentRepository.findById(id);
+        if(optional.isPresent()) {
+            return optional.get();
+        }
+        else throw new RuntimeException("Department not found for id :: " + id);
     }
 }

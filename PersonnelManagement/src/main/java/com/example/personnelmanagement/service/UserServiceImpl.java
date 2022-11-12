@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService{
                 registrationDto.getLastName(),
                 registrationDto.getEmail(),
                 registrationDto.getPhone(),
-                registrationDto.getSalary(),
                 passwordEncoder.encode(registrationDto.getPassword()),
                 registrationDto.getPost(),
                 Arrays.asList(new Role("ROLE_USER"))

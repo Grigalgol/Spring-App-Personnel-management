@@ -12,7 +12,6 @@ public class UserRegistrationDto {
     private String lastName;
     private String email;
     private String phone;
-    private Integer salary;
     private String password;
     private String post;
 }
