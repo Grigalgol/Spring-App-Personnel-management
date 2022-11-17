@@ -23,7 +23,6 @@ public class User {
     private String phone;
     private String password;
     private String post;
-    private String image;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
@@ -39,13 +38,14 @@ public class User {
 
     private Collection<Role> roles;
 
-    public User(String firstName, String lastName, String email, String phone, String password, String post, Collection<Role> roles) {
+    public User(String firstName, String lastName, String email, String phone, String password, String post, Department department, Collection<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.password = password;
         this.post = post;
+        this.department = department;
         this.roles = roles;
     }
 }

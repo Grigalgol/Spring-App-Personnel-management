@@ -21,6 +21,7 @@ public class DepartmentController {
         model.addAttribute("listDepartments", departmentService.getAllDepartments());
         return "departments";
     }
+
     @GetMapping("/showNewDepartmentForm")
     public String getNewDepartmentPage(Model model) {
         Department department = new Department();

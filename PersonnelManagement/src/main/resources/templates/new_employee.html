@@ -37,15 +37,31 @@
                 <div class="card border-0 shadow">
                     <div class="card-body">
                         <div th:if="${param.success}">
-                            <div class="alert alert-info">Департамент успешно добвлен!</div>
+                            <div class="alert alert-info">Работник успешно добвлен!</div>
                         </div>
                         <div class="text-center mt-3">
-                            <h3 class="mb-5">Добавить Департамент</h3>
+                            <h3 class="mb-5">Добавить Работника</h3>
                         </div>
-                        <form action="#" th:action="@{/department/saveDepartment}" th:object="${department}"
+                        <form action="#" th:action="@{/employee/saveEmployee}" th:object="${user}"
                               method="POST">
-                            <input type="text" th:field="*{name}"
-                                   placeholder="Название" class="form-control">
+                            <input type="text" th:field="*{lastName}"
+                                   style="margin-top: 10px;" placeholder="Фамилия" class="form-control">
+                            <input type="text" th:field="*{firstName}"
+                                   style="margin-top: 10px;" placeholder="Имя" class="form-control">
+                            <input type="text" th:field="*{post}"
+                                   style="margin-top: 10px;" placeholder="Должность" class="form-control">
+                            <input type="text" th:field="*{email}"
+                                   style="margin-top: 10px;" placeholder="Email" class="form-control">
+                            <input type="text" th:field="*{phone}"
+                                   style="margin-top: 10px;" placeholder="Телефон" class="form-control">
+
+                            <select style="margin-top: 10px;" th:field="*{departmentName}" class="form-select"  aria-label="Default select example" >
+                                <option th:each="i : ${listDepartments}" th:value="${i.name}" th:text="${i.name}">
+                                </option>
+                            </select>
+                            <input type="password" th:field="*{password}"
+                                   style="margin-top: 10px;" placeholder="Пароль" class="form-control">
+
                             <div class="text-center mt-3">
                                 <button class="btn btn-primary">Сохранить</button>
                             </div>
@@ -56,7 +72,7 @@
         </div>
         <hr>
 
-        <a th:href="@{/department}" class="text-center text-primary"> Вернуться назад</a>
+        <a th:href="@{/employee}" class="text-center text-primary"> Вернуться назад</a>
     </div>
 </section>
 <!-- Option 1: Bootstrap Bundle with Popper -->
