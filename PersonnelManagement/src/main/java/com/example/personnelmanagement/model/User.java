@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -37,6 +38,9 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
 
     private Collection<Role> roles;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "users",fetch=FetchType.LAZY)
+    private List<Payment> payments;
 
     public User(String firstName, String lastName, String email, String phone, String password, String post, Department department, Collection<Role> roles) {
         this.firstName = firstName;

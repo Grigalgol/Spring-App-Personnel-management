@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Создать работника</title>
+    <title>Личная выплата</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
     <link rel="stylesheet"
@@ -37,31 +37,25 @@
                 <div class="card border-0 shadow">
                     <div class="card-body">
                         <div th:if="${param.success}">
-                            <div class="alert alert-info">Работник успешно добвлен!</div>
+                            <div class="alert alert-info">Выплата успешно добавлена</div>
                         </div>
                         <div class="text-center mt-3">
-                            <h3 class="mb-5">Добавить Работника</h3>
+                            <h3 class="mb-5">Выплата лично</h3>
                         </div>
-                        <form action="#" th:action="@{/employee/saveEmployee}" th:object="${user}"
+                        <form action="#" th:action="@{/payments/savePayment}" th:object="${payment}"
                               method="POST">
-                            <input type="text" th:field="*{lastName}"
-                                   style="margin-top: 10px;" placeholder="Фамилия" class="form-control">
-                            <input type="text" th:field="*{firstName}"
-                                   style="margin-top: 10px;" placeholder="Имя" class="form-control">
-                            <input type="text" th:field="*{post}"
-                                   style="margin-top: 10px;" placeholder="Должность" class="form-control">
-                            <input type="text" th:field="*{email}"
-                                   style="margin-top: 10px;" placeholder="Email" class="form-control">
-                            <input type="text" th:field="*{phone}"
-                                   style="margin-top: 10px;" placeholder="Телефон" class="form-control">
-
-                            <select style="margin-top: 10px;" th:field="*{departmentName}" class="form-select"  aria-label="Default select example" >
-                                <option th:each="i : ${listDepartments}" th:value="${i.name}" th:text="${i.name}">
+                            <select style="margin-top: 10px;" th:field="*{userId}" class="form-select"  aria-label="Default select example" >
+                                <option th:each="i : ${listUsers}" th:value="${i.id}" th:text="${i.id + ' ' + i.firstName + ' ' + i.lastName}">
                                 </option>
                             </select>
-                            <input type="password" th:field="*{password}"
-                                   style="margin-top: 10px;" placeholder="Пароль" class="form-control">
-
+                            <input type="date" th:field="*{fromDate}"
+                                   style="margin-top: 10px;" placeholder="От" class="form-control">
+                            <input type="date" th:field="*{toDate}"
+                                   style="margin-top: 10px;" placeholder="До" class="form-control">
+                            <input type="number" th:field="*{salary}"
+                                   style="margin-top: 10px;" placeholder="Зарплата" class="form-control">
+                            <input type="number" th:field="*{bonus}"
+                                   style="margin-top: 10px;" placeholder="Премия" class="form-control">
                             <div class="text-center mt-3">
                                 <button class="btn btn-primary">Сохранить</button>
                             </div>
@@ -72,7 +66,7 @@
         </div>
         <hr>
 
-        <a th:href="@{/employee}" class="text-center text-primary"> Вернуться назад</a>
+        <a th:href="@{/payments}" class="text-center text-primary"> Вернуться назад</a>
     </div>
 </section>
 <!-- Option 1: Bootstrap Bundle with Popper -->
