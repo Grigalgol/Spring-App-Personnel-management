@@ -42,6 +42,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "users",fetch=FetchType.LAZY)
     private List<Payment> payments;
 
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "users",fetch=FetchType.LAZY)
+    private List<Vacation> vacations;
+
     public User(String firstName, String lastName, String email, String phone, String password, String post, Department department, Collection<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;

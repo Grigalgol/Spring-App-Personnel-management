@@ -55,4 +55,9 @@ public class PaymentsController {
         paymentService.savePaymentByDepartment(paymentDto);
         return "redirect:/payments/department?success";
     }
+    @GetMapping("/deletePayment/{id}")
+    public String deleteDepartment(@PathVariable(value = "id") long id) {
+        paymentService.deletePayment(id);
+        return "redirect:/payments";
+    }
 }

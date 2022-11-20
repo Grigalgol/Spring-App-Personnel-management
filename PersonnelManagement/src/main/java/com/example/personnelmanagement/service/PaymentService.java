@@ -9,4 +9,6 @@ public interface PaymentService {
     void savePayment (PaymentDto paymentDto);
     void savePaymentByDepartment(PaymentDto paymentDto);
     List<Payment> getAllPayments();
+    void deletePayment(long id);
+    List<Payment> getPaymentByUser(String email);
 }

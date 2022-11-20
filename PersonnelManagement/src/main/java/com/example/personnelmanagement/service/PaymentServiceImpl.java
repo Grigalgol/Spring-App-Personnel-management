@@ -58,4 +58,15 @@ public class PaymentServiceImpl implements PaymentService{
     public List<Payment> getAllPayments() {
         return paymentRepository.findAll();
     }
+
+    @Override
+    public void deletePayment(long id) {
+        paymentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Payment> getPaymentByUser(String email) {
+        Long userId = userRepository.findByEmail(email).getId();
+        return paymentRepository.findAll().stream().filter(p -> p.getUsers().getId().equals(userId)).toList();
+    }
 }
